@@ -1,0 +1,6 @@
+description: "Permissible tracking error in MW"
+metadata:
+  reference: "ESO BM delivery tolerance (example)"
+values:
+  2025-01-01:
+    value: 0.5

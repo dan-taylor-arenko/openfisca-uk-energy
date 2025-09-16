@@ -1,0 +1,9 @@
+- name: "Compliant within ±0.5 MW"
+  period: 2025-06-01
+  input:
+    units:
+      u1:
+        unit__target_output_mw: 10.0
+        unit__metered_output_mw: 9.7
+  output:
+    bm__compliant_delivery: true
