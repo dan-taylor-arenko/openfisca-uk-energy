@@ -1,59 +1,33 @@
-# OpenFisca Country-Template
+# OpenFisca UK Energy
 
-This repository helps you quickly set up and use your own OpenFisca country
-package.
+Created using the OpenFisca repo template.
 
-**You should NOT fork it** but follow the set up instructions below.
+## Pull and install
+```
+# Install Python 3.11 (feel free to replace with package manager of your choice!)
+brew install python@3.11
 
-> Otherwise, you will have to clean up all tags when you deploy your own
-> country package.
+# Clone the repo
+git clone git@github.com:dan-taylor-arenko/openfisca-uk-energy.git
+cd openfisca-uk-energy
 
-## Setting up your Country Package
+# Create & activate a Python 3.11 virtual env
+/opt/homebrew/opt/python@3.11/bin/python3.11 -m venv .venv311
+source .venv311/bin/activate
 
-This set of instructions **only needs to be followed once** and will create
-your own copy of this boilerplate directory, customising it to the country you
-want to work on. You will need to have [Git](https://git-scm.com) installed.
+# Install
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
 
-### Using GitHub (recommended for GitHub users)
+# Sanity check
+python - <<'PY'
+import openfisca_uk_energy as m
+print("Package OK at:", m.__file__)
+PY
 
-1. Click on the
-   [“Use this template” dropdown and select “Create a new repository”](https://github.com/new?template_name=country-template&template_owner=openfisca).
-
-2. Set the repository name to `openfisca-<your_country_name>`; use underscore
-   `_` as separator if there are spaces in the country name. For example,
-   `openfisca-new_zealand` or `openfisca-france`.
-
-3. After being redirected to your newly created repository, please allow a few
-   minutes for the automatic setup to be executed. Once done, the title of the
-   README file should be updated to `OpenFisca <your_country_name>`.
-
-> If the automatic setup does not start within a few minutes, you can initiate
-> it manually:
->
-> - Navigate to the “Actions” tab.
-> - Select the “First time setup” workflow.
-> - Click on “Run workflow” to start the setup process manually.
-
-4. Follow the instructions in the new repository's README.md.
-
-### Manual setup (recommended for users of other Git hosts)
-
-1. [Download a copy](https://github.com/openfisca/country-template/archive/master.zip)
-   of this repository, unzip it and `cd` into it in a Terminal window.
-
-2. Create a new repository on your favourite git host (Bitbucket, GitLab, …)
-   with the name `openfisca-<your_country_name>`. For example,
-   `openfisca-new_zealand` or `openfisca-france`.
-
-3. Execute the `first-time-setup.sh` script to initialise the git repository.
-   This performs numerous tasks including replacing all references to
-   `openfisca-country_template` with references to the new country package.
-
-   - To execute the script run `bash first-time-setup.sh` from the command line
-   - After the `first-time-setup.sh` has run both it and these instructions are
-     removed.
-
-4. Follow the instructions in the new repository's `README.md.`
+# Run the web API
+openfisca serve --country-package openfisca_uk_energy --port 5000 --reload
+```
 
 ## Writing the Legislation
 
